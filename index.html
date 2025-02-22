@@ -93,44 +93,74 @@
         }
 
         .project-image-container {
-            height: 250px;
+            height: 300px;
             width: 100%;
-            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
             position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            text-align: center;
-            padding: 1rem;
             overflow: hidden;
             border-radius: 0.5rem 0.5rem 0 0;
         }
 
         .project-image-container img {
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .project-image-container .title-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(59, 130, 246, 0.9);
-            padding: 1rem;
-            font-size: 1.25rem;
-            backdrop-filter: blur(5px);
+            transition: transform 0.5s ease;
         }
 
         .project-card:hover .project-image-container img {
             transform: scale(1.05);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+            background: white;
+            border-radius: 0 0 0.5rem 0.5rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.7));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover .image-overlay {
+            opacity: 1;
+        }
+
+        .project-title {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            right: 1rem;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: bold;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover .project-title {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .project-card img {
@@ -536,6 +566,15 @@
                                                 </div>
                                             </div>
                                             
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                                                <span style={{ fontSize: '1.5rem' }}>📱</span>
+                                                <div>
+                                                    <h3 style={{ fontWeight: 'bold', marginBottom: '0.25rem' }}>Phone</h3>
+                                                    <a href="tel:(312) 975-4067" style={{ color: '#2563eb', textDecoration: 'none' }}>
+                                                        (312) 975-4067
+                                                    </a>
+                                                </div>
+                                            </div>
 
                                             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                                                 <span style={{ fontSize: '1.5rem' }}>💼</span>
