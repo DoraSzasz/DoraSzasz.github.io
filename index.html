@@ -11,9 +11,6 @@
     
     <!-- Babel -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
     <style>
         /* Base styles */
@@ -31,7 +28,7 @@
             color: #1a1a1a;
         }
 
-        /* Utility classes */
+        /* Your existing styles remain the same */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -95,10 +92,17 @@
             box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
         }
 
-        .project-image {
+        .project-image-container {
             height: 200px;
             width: 100%;
-            object-fit: cover;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            padding: 1rem;
         }
 
         .project-content {
@@ -128,7 +132,18 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* Animations */
+        .impact-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #2563eb;
+            font-weight: 500;
+        }
+
+        .impact-badge::before {
+            content: "🏆";
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -138,7 +153,6 @@
             animation: fadeIn 0.5s ease-out forwards;
         }
 
-        /* Responsive design */
         @media (max-width: 768px) {
             .projects-grid {
                 grid-template-columns: 1fr;
@@ -150,9 +164,6 @@
     <div id="root"></div>
 
     <script type="text/babel">
-        // Get Lucide icons
-        const { Mail, Phone, Linkedin, Github, BookOpen, FileText, Briefcase, GraduationCap, Award } = lucide;
-
         function Portfolio() {
             const [activeSection, setActiveSection] = React.useState('projects');
 
@@ -162,27 +173,21 @@
                     description: "Developed state-of-the-art ML framework for detecting abnormalities in cardiac ultrasound images, increasing diagnostic accuracy by 25%",
                     technologies: ["Machine Learning", "Medical Imaging", "Python"],
                     impact: "Enhanced early diagnosis capabilities",
-                    year: "2023",
-                    image: "https://via.placeholder.com/800x600/3b82f6/FFFFFF?text=Cardiac+Analysis",
-                    color: "from-blue-500 to-purple-600"
+                    year: "2023"
                 },
                 {
                     title: "Archaeological Site Detection",
                     description: "Led analysis of 70M satellite images (20TB) covering Afghanistan's surface, accelerating analysis speed by 400X",
                     technologies: ["Computer Vision", "Satellite Imaging", "HPC"],
                     impact: "Featured in Science Magazine",
-                    year: "2022",
-                    image: "https://via.placeholder.com/800x600/10b981/FFFFFF?text=Archaeological+Detection",
-                    color: "from-emerald-500 to-teal-600"
+                    year: "2022"
                 },
                 {
                     title: "Demographic Analysis in Literature",
                     description: "Built ML system to detect 20 human demographic features across 1M+ book images",
                     technologies: ["Deep Learning", "VertexAI", "Python"],
                     impact: "Won Google Cloud Customer Awards",
-                    year: "2022",
-                    image: "https://via.placeholder.com/800x600/8b5cf6/FFFFFF?text=Demographic+Analysis",
-                    color: "from-purple-500 to-pink-600"
+                    year: "2022"
                 }
             ];
 
@@ -223,11 +228,9 @@
                                 <div className="projects-grid">
                                     {projects.map((project, index) => (
                                         <div key={index} className="project-card">
-                                            <img 
-                                                src={project.image}
-                                                alt={project.title}
-                                                className="project-image"
-                                            />
+                                            <div className="project-image-container">
+                                                {project.title}
+                                            </div>
                                             <div className="project-content">
                                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '1rem' }}>
                                                     <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold' }}>{project.title}</h3>
@@ -244,9 +247,8 @@
                                                         <span key={i} className="tech-tag">{tech}</span>
                                                     ))}
                                                 </div>
-                                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#2563eb' }}>
-                                                    <Award size={16} />
-                                                    <span style={{ fontWeight: '500' }}>{project.impact}</span>
+                                                <div className="impact-badge">
+                                                    {project.impact}
                                                 </div>
                                             </div>
                                         </div>
@@ -255,7 +257,7 @@
                             </div>
                         )}
 
-                        {/* Add other sections here */}
+                        {/* Other sections will be added here */}
                     </main>
                 </div>
             );
