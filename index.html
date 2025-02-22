@@ -11,9 +11,6 @@
     
     <!-- Babel -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
     <style>
         /* Base styles */
@@ -31,7 +28,7 @@
             color: #1a1a1a;
         }
 
-        /* Utility classes */
+        /* Your existing styles remain the same */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -95,10 +92,25 @@
             box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
         }
 
-        .project-image {
+        .project-image-container {
             height: 200px;
             width: 100%;
-            object-fit: cover;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .project-card img {
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover img {
+            transform: scale(1.05);
         }
 
         .project-content {
@@ -128,7 +140,18 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* Animations */
+        .impact-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #2563eb;
+            font-weight: 500;
+        }
+
+        .impact-badge::before {
+            content: "🏆";
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -138,7 +161,6 @@
             animation: fadeIn 0.5s ease-out forwards;
         }
 
-        /* Responsive design */
         @media (max-width: 768px) {
             .projects-grid {
                 grid-template-columns: 1fr;
@@ -150,9 +172,6 @@
     <div id="root"></div>
 
     <script type="text/babel">
-        // Get Lucide icons
-        const { Mail, Phone, Linkedin, Github, BookOpen, FileText, Briefcase, GraduationCap, Award } = lucide;
-
         function Portfolio() {
             const [activeSection, setActiveSection] = React.useState('projects');
 
@@ -162,27 +181,21 @@
                     description: "Developed state-of-the-art ML framework for detecting abnormalities in cardiac ultrasound images, increasing diagnostic accuracy by 25%",
                     technologies: ["Machine Learning", "Medical Imaging", "Python"],
                     impact: "Enhanced early diagnosis capabilities",
-                    year: "2023",
-                    image: "https://via.placeholder.com/800x600/3b82f6/FFFFFF?text=Cardiac+Analysis",
-                    color: "from-blue-500 to-purple-600"
+                    year: "2023"
                 },
                 {
                     title: "Archaeological Site Detection",
                     description: "Led analysis of 70M satellite images (20TB) covering Afghanistan's surface, accelerating analysis speed by 400X",
                     technologies: ["Computer Vision", "Satellite Imaging", "HPC"],
                     impact: "Featured in Science Magazine",
-                    year: "2022",
-                    image: "https://via.placeholder.com/800x600/10b981/FFFFFF?text=Archaeological+Detection",
-                    color: "from-emerald-500 to-teal-600"
+                    year: "2022"
                 },
                 {
                     title: "Demographic Analysis in Literature",
                     description: "Built ML system to detect 20 human demographic features across 1M+ book images",
                     technologies: ["Deep Learning", "VertexAI", "Python"],
                     impact: "Won Google Cloud Customer Awards",
-                    year: "2022",
-                    image: "https://via.placeholder.com/800x600/8b5cf6/FFFFFF?text=Demographic+Analysis",
-                    color: "from-purple-500 to-pink-600"
+                    year: "2022"
                 }
             ];
 
@@ -223,11 +236,19 @@
                                 <div className="projects-grid">
                                     {projects.map((project, index) => (
                                         <div key={index} className="project-card">
-                                            <img 
-                                                src={project.image}
-                                                alt={project.title}
-                                                className="project-image"
-                                            />
+                                            {project.isActualImage ? (
+                                                <div className="h-64 overflow-hidden">
+                                                    <img 
+                                                        src={project.image}
+                                                        alt={project.title}
+                                                        className="w-full h-full object-cover"
+                                                    />
+                                                </div>
+                                            ) : (
+                                                <div className="project-image-container">
+                                                    {project.title}
+                                                </div>
+                                            )}
                                             <div className="project-content">
                                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '1rem' }}>
                                                     <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold' }}>{project.title}</h3>
@@ -244,9 +265,8 @@
                                                         <span key={i} className="tech-tag">{tech}</span>
                                                     ))}
                                                 </div>
-                                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#2563eb' }}>
-                                                    <Award size={16} />
-                                                    <span style={{ fontWeight: '500' }}>{project.impact}</span>
+                                                <div className="impact-badge">
+                                                    {project.impact}
                                                 </div>
                                             </div>
                                         </div>
@@ -255,7 +275,173 @@
                             </div>
                         )}
 
-                        {/* Add other sections here */}
+                        {activeSection === 'publications' && (
+                            <div className="fade-in">
+                                <h2 className="section-title">Publications</h2>
+                                <div className="grid gap-6">
+                                    {[
+                                        {
+                                            title: "Measuring Representation of Race, Gender, and Age in Children's Books",
+                                            authors: "Teodora Szasz, Ping-Jung Liu, Emileigh Harrison, Ping-Chang Lin, Hakizumwami Birali Runesha, Anjali Adukia",
+                                            journal: "IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)",
+                                            year: "2022",
+                                            link: "https://openaccess.thecvf.com/content/WACV2022/papers/Szasz_Measuring_Representation_of_Race_Gender_and_Age_in_Childrens_Books_WACV_2022_paper.pdf"
+                                        },
+                                        {
+                                            title: "Echocardiographic Detection of Regional Wall Motion Abnormalities Using Artificial Intelligence",
+                                            authors: "Jeremy A. Slivnick, et al.",
+                                            journal: "Journal of the American Society of Echocardiography",
+                                            year: "2024",
+                                            link: "https://doi.org/10.1016/j.echo.2024.03.017"
+                                        },
+                                        {
+                                            title: "Beamforming Through Regularized Inverse Problems in Ultrasound Medical Imaging",
+                                            authors: "Szasz, Teodora, Adrian Basarab, and Denis Kouamé",
+                                            journal: "IEEE Transactions on Ultrasonics, Ferroelectrics, and Frequency Control",
+                                            year: "2016",
+                                            link: "https://doi.org/10.1109/TUFFC.2016.2608939"
+                                        }
+                                    ].map((pub, index) => (
+                                        <div key={index} className="project-card">
+                                            <div className="project-content">
+                                                <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>{pub.title}</h3>
+                                                <p style={{ color: '#4b5563', marginBottom: '0.5rem' }}>{pub.authors}</p>
+                                                <p style={{ color: '#6b7280', fontSize: '0.875rem', marginBottom: '1rem' }}>
+                                                    {pub.journal} • {pub.year}
+                                                </p>
+                                                <a 
+                                                    href={pub.link}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="text-blue-600 hover:text-blue-800 flex items-center gap-2"
+                                                    style={{ color: '#2563eb', textDecoration: 'none' }}
+                                                >
+                                                    View Publication →
+                                                </a>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
+                        {activeSection === 'resume' && (
+                            <div className="fade-in">
+                                <h2 className="section-title">Resume</h2>
+                                
+                                <div style={{ marginBottom: '3rem' }}>
+                                    <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                        💼 Experience
+                                    </h3>
+                                    <div className="grid gap-6">
+                                        {[
+                                            {
+                                                title: "Senior Data Scientist",
+                                                company: "Philips LLC",
+                                                location: "Chicago, IL",
+                                                period: "Jan 2023 - present",
+                                                description: "Led AI innovations in FDA-Approved medical imaging devices. Developed ML data-pipeline infrastructure for handling over 1M medical images. Increased diagnostic accuracy by 25% using state-of-the-art ML."
+                                            },
+                                            {
+                                                title: "Senior Computational Scientist",
+                                                company: "University of Chicago",
+                                                location: "Chicago, IL",
+                                                period: "Feb 2021 - 2023",
+                                                description: "Led team of 10 researchers across departments. Managed University Supercomputer operations. Published research in Science Magazine."
+                                            },
+                                            {
+                                                title: "Computational Scientist",
+                                                company: "University of Chicago",
+                                                location: "Chicago, IL",
+                                                period: "2016 - 2021",
+                                                description: "Applied ML and Computer Vision to measure demographic representation in books images. Implemented medical image visualization applications."
+                                            }
+                                        ].map((exp, index) => (
+                                            <div key={index} className="project-card">
+                                                <div className="project-content">
+                                                    <h4 style={{ fontSize: '1.25rem', fontWeight: 'bold' }}>{exp.title}</h4>
+                                                    <p style={{ color: '#4b5563' }}>{exp.company} • {exp.location}</p>
+                                                    <p style={{ color: '#6b7280', fontSize: '0.875rem', marginBottom: '1rem' }}>{exp.period}</p>
+                                                    <p style={{ color: '#1f2937' }}>{exp.description}</p>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                        🎓 Education
+                                    </h3>
+                                    <div className="grid gap-6">
+                                        {[
+                                            {
+                                                degree: "PhD in Computer Science",
+                                                institution: "University of Toulouse",
+                                                location: "France",
+                                                year: "2016"
+                                            },
+                                            {
+                                                degree: "MSc in Multimedia Technologies",
+                                                institution: "Technical University of Cluj-Napoca",
+                                                location: "Romania",
+                                                year: "2014"
+                                            },
+                                            {
+                                                degree: "BSc in Electronics, Telecommunications and Information Technology",
+                                                institution: "Technical University of Cluj-Napoca",
+                                                location: "Romania",
+                                                year: "2011"
+                                            }
+                                        ].map((edu, index) => (
+                                            <div key={index} className="project-card">
+                                                <div className="project-content">
+                                                    <h4 style={{ fontSize: '1.25rem', fontWeight: 'bold' }}>{edu.degree}</h4>
+                                                    <p style={{ color: '#4b5563' }}>{edu.institution}</p>
+                                                    <p style={{ color: '#6b7280', fontSize: '0.875rem' }}>{edu.location} • {edu.year}</p>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {activeSection === 'contact' && (
+                            <div className="fade-in">
+                                <h2 className="section-title">Contact</h2>
+                                <div className="project-card" style={{ maxWidth: '600px', margin: '0 auto' }}>
+                                    <div className="project-content">
+                                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                                                <span style={{ fontSize: '1.5rem' }}>📧</span>
+                                                <div>
+                                                    <h3 style={{ fontWeight: 'bold', marginBottom: '0.25rem' }}>Email</h3>
+                                                    <a href="mailto:dorha.szasz@gmail.com" style={{ color: '#2563eb', textDecoration: 'none' }}>
+                                                        dorha.szasz@gmail.com
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                                                <span style={{ fontSize: '1.5rem' }}>💼</span>
+                                                <div>
+                                                    <h3 style={{ fontWeight: 'bold', marginBottom: '0.25rem' }}>LinkedIn</h3>
+                                                    <a 
+                                                        href="https://www.linkedin.com/in/teodoraszasz/"
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        style={{ color: '#2563eb', textDecoration: 'none' }}
+                                                    >
+                                                        /in/teodoraszasz
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
                     </main>
                 </div>
             );
