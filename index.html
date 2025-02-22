@@ -257,7 +257,183 @@
                             </div>
                         )}
 
-                        {/* Other sections will be added here */}
+                        {activeSection === 'publications' && (
+                            <div className="fade-in">
+                                <h2 className="section-title">Publications</h2>
+                                <div className="grid gap-6">
+                                    {[
+                                        {
+                                            title: "Measuring Representation of Race, Gender, and Age in Children's Books",
+                                            authors: "Teodora Szasz, Ping-Jung Liu, Emileigh Harrison, Ping-Chang Lin, Hakizumwami Birali Runesha, Anjali Adukia",
+                                            journal: "IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)",
+                                            year: "2022",
+                                            link: "https://openaccess.thecvf.com/content/WACV2022/papers/Szasz_Measuring_Representation_of_Race_Gender_and_Age_in_Childrens_Books_WACV_2022_paper.pdf"
+                                        },
+                                        {
+                                            title: "Echocardiographic Detection of Regional Wall Motion Abnormalities Using Artificial Intelligence",
+                                            authors: "Jeremy A. Slivnick, et al.",
+                                            journal: "Journal of the American Society of Echocardiography",
+                                            year: "2024",
+                                            link: "https://doi.org/10.1016/j.echo.2024.03.017"
+                                        },
+                                        {
+                                            title: "Beamforming Through Regularized Inverse Problems in Ultrasound Medical Imaging",
+                                            authors: "Szasz, Teodora, Adrian Basarab, and Denis Kouamé",
+                                            journal: "IEEE Transactions on Ultrasonics, Ferroelectrics, and Frequency Control",
+                                            year: "2016",
+                                            link: "https://doi.org/10.1109/TUFFC.2016.2608939"
+                                        }
+                                    ].map((pub, index) => (
+                                        <div key={index} className="project-card">
+                                            <div className="project-content">
+                                                <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>{pub.title}</h3>
+                                                <p style={{ color: '#4b5563', marginBottom: '0.5rem' }}>{pub.authors}</p>
+                                                <p style={{ color: '#6b7280', fontSize: '0.875rem', marginBottom: '1rem' }}>
+                                                    {pub.journal} • {pub.year}
+                                                </p>
+                                                <a 
+                                                    href={pub.link}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="text-blue-600 hover:text-blue-800 flex items-center gap-2"
+                                                    style={{ color: '#2563eb', textDecoration: 'none' }}
+                                                >
+                                                    View Publication →
+                                                </a>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
+                        {activeSection === 'resume' && (
+                            <div className="fade-in">
+                                <h2 className="section-title">Resume</h2>
+                                
+                                <div style={{ marginBottom: '3rem' }}>
+                                    <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                        💼 Experience
+                                    </h3>
+                                    <div className="grid gap-6">
+                                        {[
+                                            {
+                                                title: "Senior Data Scientist",
+                                                company: "Philips LLC",
+                                                location: "Chicago, IL",
+                                                period: "Jan 2023 - present",
+                                                description: "Led AI innovations in FDA-Approved medical imaging devices. Developed ML data-pipeline infrastructure for handling over 1M medical images. Increased diagnostic accuracy by 25% using state-of-the-art ML."
+                                            },
+                                            {
+                                                title: "Senior Computational Scientist",
+                                                company: "University of Chicago",
+                                                location: "Chicago, IL",
+                                                period: "Feb 2021 - 2023",
+                                                description: "Led team of 10 researchers across departments. Managed University Supercomputer operations. Published research in Science Magazine."
+                                            },
+                                            {
+                                                title: "Computational Scientist",
+                                                company: "University of Chicago",
+                                                location: "Chicago, IL",
+                                                period: "2016 - 2021",
+                                                description: "Applied ML and Computer Vision to measure demographic representation in books images. Implemented medical image visualization applications."
+                                            }
+                                        ].map((exp, index) => (
+                                            <div key={index} className="project-card">
+                                                <div className="project-content">
+                                                    <h4 style={{ fontSize: '1.25rem', fontWeight: 'bold' }}>{exp.title}</h4>
+                                                    <p style={{ color: '#4b5563' }}>{exp.company} • {exp.location}</p>
+                                                    <p style={{ color: '#6b7280', fontSize: '0.875rem', marginBottom: '1rem' }}>{exp.period}</p>
+                                                    <p style={{ color: '#1f2937' }}>{exp.description}</p>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                        🎓 Education
+                                    </h3>
+                                    <div className="grid gap-6">
+                                        {[
+                                            {
+                                                degree: "PhD in Computer Science",
+                                                institution: "University of Toulouse",
+                                                location: "France",
+                                                year: "2016"
+                                            },
+                                            {
+                                                degree: "MSc in Multimedia Technologies",
+                                                institution: "Technical University of Cluj-Napoca",
+                                                location: "Romania",
+                                                year: "2014"
+                                            },
+                                            {
+                                                degree: "BSc in Electronics, Telecommunications and Information Technology",
+                                                institution: "Technical University of Cluj-Napoca",
+                                                location: "Romania",
+                                                year: "2011"
+                                            }
+                                        ].map((edu, index) => (
+                                            <div key={index} className="project-card">
+                                                <div className="project-content">
+                                                    <h4 style={{ fontSize: '1.25rem', fontWeight: 'bold' }}>{edu.degree}</h4>
+                                                    <p style={{ color: '#4b5563' }}>{edu.institution}</p>
+                                                    <p style={{ color: '#6b7280', fontSize: '0.875rem' }}>{edu.location} • {edu.year}</p>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {activeSection === 'contact' && (
+                            <div className="fade-in">
+                                <h2 className="section-title">Contact</h2>
+                                <div className="project-card" style={{ maxWidth: '600px', margin: '0 auto' }}>
+                                    <div className="project-content">
+                                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                                                <span style={{ fontSize: '1.5rem' }}>📧</span>
+                                                <div>
+                                                    <h3 style={{ fontWeight: 'bold', marginBottom: '0.25rem' }}>Email</h3>
+                                                    <a href="mailto:dorha.szasz@gmail.com" style={{ color: '#2563eb', textDecoration: 'none' }}>
+                                                        dorha.szasz@gmail.com
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                                                <span style={{ fontSize: '1.5rem' }}>📱</span>
+                                                <div>
+                                                    <h3 style={{ fontWeight: 'bold', marginBottom: '0.25rem' }}>Phone</h3>
+                                                    <a href="tel:(312) 975-4067" style={{ color: '#2563eb', textDecoration: 'none' }}>
+                                                        (312) 975-4067
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                                                <span style={{ fontSize: '1.5rem' }}>💼</span>
+                                                <div>
+                                                    <h3 style={{ fontWeight: 'bold', marginBottom: '0.25rem' }}>LinkedIn</h3>
+                                                    <a 
+                                                        href="https://www.linkedin.com/in/teodoraszasz/"
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        style={{ color: '#2563eb', textDecoration: 'none' }}
+                                                    >
+                                                        /in/teodoraszasz
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
                     </main>
                 </div>
             );
