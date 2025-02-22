@@ -105,6 +105,14 @@
             padding: 1rem;
         }
 
+        .project-card img {
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover img {
+            transform: scale(1.05);
+        }
+
         .project-content {
             padding: 1.5rem;
         }
@@ -228,9 +236,19 @@
                                 <div className="projects-grid">
                                     {projects.map((project, index) => (
                                         <div key={index} className="project-card">
-                                            <div className="project-image-container">
-                                                {project.title}
-                                            </div>
+                                            {project.isActualImage ? (
+                                                <div className="h-64 overflow-hidden">
+                                                    <img 
+                                                        src={project.image}
+                                                        alt={project.title}
+                                                        className="w-full h-full object-cover"
+                                                    />
+                                                </div>
+                                            ) : (
+                                                <div className="project-image-container">
+                                                    {project.title}
+                                                </div>
+                                            )}
                                             <div className="project-content">
                                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '1rem' }}>
                                                     <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold' }}>{project.title}</h3>
@@ -405,16 +423,6 @@
                                                 </div>
                                             </div>
                                             
-                                            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                                                <span style={{ fontSize: '1.5rem' }}>📱</span>
-                                                <div>
-                                                    <h3 style={{ fontWeight: 'bold', marginBottom: '0.25rem' }}>Phone</h3>
-                                                    <a href="tel:(312) 975-4067" style={{ color: '#2563eb', textDecoration: 'none' }}>
-                                                        (312) 975-4067
-                                                    </a>
-                                                </div>
-                                            </div>
-
                                             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                                                 <span style={{ fontSize: '1.5rem' }}>💼</span>
                                                 <div>
