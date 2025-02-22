@@ -5,45 +5,263 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teodora Szasz - AI Researcher & Computer Vision Expert</title>
     
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
     <!-- React and ReactDOM -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     
-    <!-- Babel for JSX -->
-    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <!-- Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
-    <!-- Custom styles -->
     <style>
+        /* Base styles */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1a1a1a;
         }
-        
-        .animate-fadeIn {
-            animation: fadeIn 0.5s ease-in;
+
+        /* Utility classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
         }
-        
+
+        .header {
+            background: white;
+            padding: 4rem 1rem;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .nav-button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .nav-button.active {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .nav-button:not(.active) {
+            background: white;
+        }
+
+        .nav-button:hover:not(.active) {
+            background: #f1f5f9;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+        }
+
+        .project-image {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .tech-tag {
+            background: #f1f5f9;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            background: linear-gradient(to right, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
-<body class="bg-gray-50">
+<body>
     <div id="root"></div>
 
-    <!-- Portfolio Component -->
-    <script type="text/babel" src="portfolio.js"></script>
-
-    <!-- Initialize App -->
     <script type="text/babel">
+        // Get Lucide icons
+        const { Mail, Phone, Linkedin, Github, BookOpen, FileText, Briefcase, GraduationCap, Award } = lucide;
+
+        function Portfolio() {
+            const [activeSection, setActiveSection] = React.useState('projects');
+
+            const projects = [
+                {
+                    title: "AI-Powered Cardiac Analysis",
+                    description: "Developed state-of-the-art ML framework for detecting abnormalities in cardiac ultrasound images, increasing diagnostic accuracy by 25%",
+                    technologies: ["Machine Learning", "Medical Imaging", "Python"],
+                    impact: "Enhanced early diagnosis capabilities",
+                    year: "2023",
+                    image: "https://via.placeholder.com/800x600/3b82f6/FFFFFF?text=Cardiac+Analysis",
+                    color: "from-blue-500 to-purple-600"
+                },
+                {
+                    title: "Archaeological Site Detection",
+                    description: "Led analysis of 70M satellite images (20TB) covering Afghanistan's surface, accelerating analysis speed by 400X",
+                    technologies: ["Computer Vision", "Satellite Imaging", "HPC"],
+                    impact: "Featured in Science Magazine",
+                    year: "2022",
+                    image: "https://via.placeholder.com/800x600/10b981/FFFFFF?text=Archaeological+Detection",
+                    color: "from-emerald-500 to-teal-600"
+                },
+                {
+                    title: "Demographic Analysis in Literature",
+                    description: "Built ML system to detect 20 human demographic features across 1M+ book images",
+                    technologies: ["Deep Learning", "VertexAI", "Python"],
+                    impact: "Won Google Cloud Customer Awards",
+                    year: "2022",
+                    image: "https://via.placeholder.com/800x600/8b5cf6/FFFFFF?text=Demographic+Analysis",
+                    color: "from-purple-500 to-pink-600"
+                }
+            ];
+
+            const sections = [
+                { id: 'projects', label: 'Projects' },
+                { id: 'publications', label: 'Publications' },
+                { id: 'resume', label: 'Resume' },
+                { id: 'contact', label: 'Contact' }
+            ];
+
+            return (
+                <div>
+                    <header className="header">
+                        <h1 style={{ fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>
+                            Teodora Szasz
+                        </h1>
+                        <p style={{ fontSize: '1.25rem', color: '#4b5563' }}>
+                            Senior AI Researcher | Computer Vision
+                        </p>
+                    </header>
+
+                    <nav className="nav">
+                        {sections.map(section => (
+                            <button
+                                key={section.id}
+                                onClick={() => setActiveSection(section.id)}
+                                className={`nav-button ${activeSection === section.id ? 'active' : ''}`}
+                            >
+                                {section.label}
+                            </button>
+                        ))}
+                    </nav>
+
+                    <main className="container">
+                        {activeSection === 'projects' && (
+                            <div className="fade-in">
+                                <h2 className="section-title">Featured Projects</h2>
+                                <div className="projects-grid">
+                                    {projects.map((project, index) => (
+                                        <div key={index} className="project-card">
+                                            <img 
+                                                src={project.image}
+                                                alt={project.title}
+                                                className="project-image"
+                                            />
+                                            <div className="project-content">
+                                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '1rem' }}>
+                                                    <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold' }}>{project.title}</h3>
+                                                    <span style={{ 
+                                                        background: '#f1f5f9', 
+                                                        padding: '0.25rem 0.75rem', 
+                                                        borderRadius: '9999px',
+                                                        fontSize: '0.875rem'
+                                                    }}>{project.year}</span>
+                                                </div>
+                                                <p style={{ color: '#4b5563', marginBottom: '1rem' }}>{project.description}</p>
+                                                <div className="tech-tags">
+                                                    {project.technologies.map((tech, i) => (
+                                                        <span key={i} className="tech-tag">{tech}</span>
+                                                    ))}
+                                                </div>
+                                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#2563eb' }}>
+                                                    <Award size={16} />
+                                                    <span style={{ fontWeight: '500' }}>{project.impact}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Add other sections here */}
+                    </main>
+                </div>
+            );
+        }
+
+        // Render the app
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<Portfolio />);
     </script>
