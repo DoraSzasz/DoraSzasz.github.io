@@ -229,6 +229,7 @@
 
             const sections = [
                 { id: 'projects', label: 'Projects' },
+                { id: 'featured', label: 'Featured In' },
                 { id: 'publications', label: 'Publications' },
                 { id: 'resume', label: 'Resume' },
                 { id: 'contact', label: 'Contact' }
@@ -300,6 +301,85 @@
                                                 </div>
                                                 <div className="impact-badge">
                                                     {project.impact}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
+                        {activeSection === 'featured' && (
+                            <div className="fade-in">
+                                <h2 className="section-title">Featured In</h2>
+                                <div className="grid gap-6">
+                                    {[
+                                        {
+                                            title: "AI for Good - DEI AI Leader of the Year Winner",
+                                            organization: "Women in AI Awards North America",
+                                            year: "2023",
+                                            description: "Recognized for outstanding contributions to diversity, equity, and inclusion in artificial intelligence.",
+                                            link: "https://www.womeninai.co/post/honoring-the-excellence-of-women-in-ai-winners-at-wai-awards-north-america-2023",
+                                            icon: "🏆",
+                                            category: "Award"
+                                        },
+                                        {
+                                            title: "Chicago Researchers Measure Representation in Children's Books",
+                                            organization: "Google Cloud Case Study",
+                                            year: "2022",
+                                            description: "Featured research on using Vision AI to analyze diversity in children's book illustrations.",
+                                            link: "https://edu.google.com/resources/customer-stories/university-of-chicago/",
+                                            icon: "📚",
+                                            category: "Case Study"
+                                        },
+                                        {
+                                            title: "SciVis Unveils a Billion Cells, Covid-19 & Invisible Monsters",
+                                            organization: "Intel Developer Podcast - Episode 29",
+                                            year: "2021",
+                                            description: "Featured discussion on scientific visualization and COVID-19 research.",
+                                            link: "https://www.intel.com/content/www/us/en/developer/articles/technical/scivis-a-billion-cells-covid-19-invisible-monsters.html",
+                                            icon: "🎙️",
+                                            category: "Podcast"
+                                        },
+                                        {
+                                            title: "Generative Landscape Discussion Series",
+                                            organization: "Data Science Castnet",
+                                            year: "2023",
+                                            description: "Guest speaker discussing AI and computer vision applications.",
+                                            link: "https://www.youtube.com/watch?v=g-zzeJzXOi8",
+                                            icon: "🎯",
+                                            category: "Talk"
+                                        }
+                                    ].map((feature, index) => (
+                                        <div key={index} className="project-card group">
+                                            <div className="project-content p-6">
+                                                <div className="flex items-start gap-4">
+                                                    <span className="text-4xl" role="img" aria-label="icon">
+                                                        {feature.icon}
+                                                    </span>
+                                                    <div className="flex-1">
+                                                        <div className="flex justify-between items-start">
+                                                            <div>
+                                                                <h3 className="text-xl font-bold">{feature.title}</h3>
+                                                                <p className="text-gray-600">{feature.organization}</p>
+                                                            </div>
+                                                            <div className="flex items-center gap-2">
+                                                                <span className="bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full">
+                                                                    {feature.category}
+                                                                </span>
+                                                                <span className="text-gray-500">{feature.year}</span>
+                                                            </div>
+                                                        </div>
+                                                        <p className="text-gray-600 mt-2 mb-4">{feature.description}</p>
+                                                        <a 
+                                                            href={feature.link}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors"
+                                                        >
+                                                            View Details →
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
