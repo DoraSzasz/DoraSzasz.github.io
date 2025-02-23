@@ -4,61 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teodora Szasz - AI Researcher & Computer Vision Expert</title>
-  
-    <!-- Include React, ReactDOM, and Babel in the head -->
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- Include React, ReactDOM, and Babel -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-        
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f8fafc;
             color: #1a1a1a;
             line-height: 1.5;
         }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 1.5rem;
         }
-
         .header {
-            background: white;
-            padding: 4rem 1rem;
             text-align: center;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            margin-bottom: 2rem;
+            padding: 3rem 1rem;
         }
-
         .nav {
-            position: sticky;
-            top: 0;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
-            z-index: 100;
-            margin-bottom: 2rem;
-        }
-
-        .nav-content {
             display: flex;
             justify-content: center;
             gap: 1rem;
-            flex-wrap: wrap;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
+            margin-bottom: 2rem;
         }
-
         .nav-button {
             padding: 0.75rem 1.5rem;
             border: none;
@@ -71,149 +47,37 @@
             font-size: 1rem;
             box-shadow: 0 1px 2px rgba(0,0,0,0.05);
         }
-
         .nav-button.active {
             background: #3b82f6;
             color: white;
         }
-
-        .nav-button:hover:not(.active) {
-            background: #f1f5f9;
-        }
-
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            margin: 2rem 0;
         }
-
         .card {
             background: white;
             border-radius: 1rem;
             overflow: hidden;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            text-align: center;
-            margin: 2rem 0;
-            background: linear-gradient(to right, #3b82f6, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: bold;
-        }
-
-        .image-container {
-            height: 250px;
-            width: 100%;
-            overflow: hidden;
-            position: relative;
-            background: #f8fafc;
-        }
-
-        .image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover .image-container img {
-            transform: scale(1.05);
-        }
-
         .content {
             padding: 1.5rem;
         }
-
-        .tag {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.875rem;
-            background: #f1f5f9;
-            color: #1a1a1a;
-            margin: 0.25rem;
-            transition: background-color 0.2s;
+        .image-container img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
         }
-
-        .tag:hover {
-            background: #e2e8f0;
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 1rem;
         }
-
-        .fade-in {
-            animation: fadeIn 0.5s ease-out forwards;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
         .link {
             color: #2563eb;
             text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.25rem;
-            transition: color 0.2s;
-        }
-
-        .link:hover {
-            color: #1d4ed8;
-            text-decoration: underline;
-        }
-
-        .subsection-title {
-            font-size: 1.75rem;
-            font-weight: bold;
-            margin: 3rem 0 2rem;
-            color: #1a1a1a;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1.5rem;
-            background: white;
-            border-radius: 0.5rem;
-            margin-bottom: 1rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-
-        .contact-icon {
-            font-size: 1.5rem;
-            color: #3b82f6;
-        }
-
-        @media (max-width: 768px) {
-            .grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .nav-content {
-                flex-direction: column;
-            }
-            
-            .nav-button {
-                width: 100%;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
         }
     </style>
 </head>
@@ -224,571 +88,20 @@
         function Portfolio() {
             const [activeSection, setActiveSection] = React.useState('projects');
 
+            const sections = [
+                { id: 'projects', label: 'Projects' },
+                { id: 'resume', label: 'Resume' },
+                { id: 'contact', label: 'Contact' }
+            ];
+
             const projects = [
                 {
                     title: "AI-Powered Cardiac Analysis",
-                    description: "Developed state-of-the-art ML framework for detecting abnormalities in cardiac ultrasound images, increasing diagnostic accuracy by 25%",
+                    description: "Developed ML for detecting abnormalities in cardiac ultrasound images, increasing diagnostic accuracy by 25%",
                     technologies: ["Machine Learning", "Medical Imaging", "Python"],
-                    impact: "Enhanced early diagnosis capabilities",
                     year: "2023",
                     imageUrl: "https://raw.githubusercontent.com/DoraSzasz/DoraSzasz.github.io/main/images/cardiac.jpg"
-                },
-                {
-                    title: "Archaeological Site Detection",
-                    description: "Led analysis of 70M satellite images (20TB) covering Afghanistan's surface, accelerating analysis speed by 400X",
-                    technologies: ["Computer Vision", "Satellite Imaging", "HPC"],
-                    impact: "Featured in Science Magazine",
-                    year: "2022",
-                    imageUrl: "https://raw.githubusercontent.com/DoraSzasz/DoraSzasz.github.io/main/images/archaeological.jpg"
-                },
-                {
-                    title: "Demographic Analysis in Literature",
-                    description: "Built ML system to detect 20 human demographic features across 1M+ book images",
-                    technologies: ["Deep Learning", "VertexAI", "Python"],
-                    impact: "Won Google Cloud Customer Awards",
-                    year: "2022",
-                    imageUrl: "https://raw.githubusercontent.com/DoraSzasz/DoraSzasz.github.io/main/images/demographics.jpg"
                 }
-            ];
-
-            const sections = [
-                { id: 'projects', label: 'Projects' },
-                { id: 'featured', label: 'Featured In' },
-                { id: 'publications', label: 'Publications' },
-                { id: 'resume', label: 'Resume' },
-                { id: 'contact', label: 'Contact' }
-            ];
-
-            const featuredContent = [
-                {
-                    title: "AI for Good - DEI AI Leader of the Year Winner",
-                    organization: "Women in AI Awards North America",
-                    year: "2023",
-                    description: "Recognized for outstanding contributions to diversity, equity, and inclusion in artificial intelligence.",
-                    link: "https://www.womeninai.co/post/honoring-the-excellence-of-women-in-ai-winners-at-wai-awards-north-america-2023",
-                    icon: "🏆"
-                },
-                {
-                    title: "Chicago Researchers Measure Representation in Children's Books",
-                    organization: "Google Cloud Case Study",
-                    year: "2022",
-                    description: "Featured research on using Vision AI to analyze diversity in children's book illustrations.",
-                    link: "https://edu.google.com/resources/customer-stories/university-of-chicago/",
-                    icon: "📚"
-                },
-                {
-                    title: "SciVis Unveils a Billion Cells",
-                    organization: "Intel Developer Podcast",
-                    year: "2021",
-                    description: "Featured discussion on scientific visualization and COVID-19 research.",
-                    link: "https://www.intel.com/content/www/us/en/developer/articles/technical/scivis-a-billion-cells-covid-19-invisible-monsters.html",
-                    icon: "🎙️"
-                }
-            ];
-
-            const publications = [
-                {
-                    title: "Measuring Representation of Race, Gender, and Age in Children's Books",
-                    authors: "Teodora Szasz, et al.",
-                    journal: "IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)",
-                    year: "2022",
-                    link: "https://openaccess.thecvf.com/content/WACV2022/papers/Szasz_Measuring_Representation_of_Race_Gender_and_Age_in_Childrens_Books_WACV_2022_paper.pdf"
-                },
-                {
-                    title: "Echocardiographic Detection of Regional Wall Motion Abnormalities Using AI",
-                    authors: "Jeremy A. Slivnick, et al.",
-                    journal: "Journal of the American Society of Echocardiography",
-                    year: "2024",
-                    link: "https://doi.org/10.1016/j.echo.2024.03.017"
-                },
-                {
-                    title: "Beamforming Through Regularized Inverse Problems in Ultrasound Medical Imaging",
-                    authors: "Szasz, Teodora, Adrian Basarab, and Denis Kouamé",
-                    journal: "IEEE Transactions on Ultrasonics, Ferroelectrics, and Frequency Control",
-                    year: "2016",
-                    link: "https://doi.org/10.1109/TUFFC.2016.2608939"
-                }
-            ];
-
-            const experience = [
-                {
-                    title: "Senior Data Scientist",
-                    company: "Philips LLC",
-                    location: "Chicago, IL",
-                    period: "Jan 2023 - present",
-                    description: "Led AI innovations in FDA-Approved medical imaging devices. Developed ML data-pipeline infrastructure for handling over 1M medical images. Increased diagnostic accuracy by 25% using state-of-the-art ML."
-                },
-                {
-                    title: "Senior Computational Scientist",
-                    company: "University of Chicago",
-                    location: "Chicago, IL",
-                    period: "Feb 2021 - 2023",
-                    description: "Led team of 10 researchers across departments. Managed University Supercomputer operations. Published research in Science Magazine."
-                },
-                {
-                    title: "Computational Scientist",
-                    company: "University of Chicago",
-                    location: "Chicago, IL",
-                    period: "2016 - 2021",
-                    description: "Applied ML and Computer Vision to measure demographic representation in books images. Implemented medical image visualization applications."
-                }
-            ];
-
-            const education = [
-                {
-                    degree: "PhD in Computer Science",
-                    institution: "University of Toulouse",
-                    location: "France",
-                    year: "2016"
-                },
-                {
-                    degree: "MSc in Multimedia Technologies",
-                    institution: "Technical University of Cluj-Napoca",
-                    location: "Romania",
-                    year: "2014"
-                },
-                {
-                    degree: "BSc in Electronics, Telecommunications and Information Technology",
-                    institution: "Technical University of Cluj-Napoca",
-                    location: "Romania",
-                    year: "2011"
-                }
-            ];
-
-            return (
-                <div>
-                    <header className="header">
-                        <h1 style={{ fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>
-                            Teodora Szasz
-                        </h1>
-                        <p style={{ fontSize: '1.25rem', color: '#4b5563' }}>
-                            Senior AI Researcher | Computer Vision
-                        </p>
-                    </header>
-
-                    <nav className="nav">
-                        <div className="nav-content">
-                            {sections.map(section => (
-                                <button
-                                    key={section.id}
-                                    onClick={() => setActiveSection(section.id)}
-                                    className={`nav-button ${activeSection === section.id ? 'active' : ''}`}
-                                >
-                                    {section.label}
-                                </button>
-                            ))}
-                        </div>
-                    </nav>
-
-                    <main className="container">
-                        {activeSection === 'projects' && (
-                            <div className="fade-in">
-                                <h2 className="section-title">Featured Projects</h2>
-                                <div className="grid">
-                                    {projects.map((project, index) => (
-                                        <div key={index} className="card">
-                                            <div className="image-container">
-                                                <img 
-                                                    src={project.imageUrl}
-                                                    alt={project.title}
-                                                    onError={(e) => {
-                                                        console.error(`Failed to load image: ${project.imageUrl}`);
-                                                        e.target.style.display = 'none';
-                                                    }}
-                                                />
-                                            </div>
-                                            <div className="content">
-                                                <div style={{
-                                                    display: 'flex',
-                                                    justifyContent: 'space-between',
-                                                    alignItems: 'start',
-                                                    marginBottom: '1rem'
-                                                }}>
-                                                    <h3 style={{
-                                                        fontSize: '1.25rem',
-                                                        fontWeight: 'bold'
-                                                    }}>{project.title}</h3>
-                                                    <span className="tag">{project.year}</span>
-                                                </div>
-                                                <p style={{
-                                                    color: '#4b5563',
-                                                    marginBottom: '1rem'
-                                                }}>{project.description}</p>
-                                                <div style={{
-                                                    display: 'flex',
-                                                    flexWrap: 'wrap',
-                                                    gap: '0.5rem',
-                                                    marginBottom: '1rem'
-                                                }}>
-                                                    {project.technologies.map((tech, i) => (
-                                                        <span key={i} className="tag">{tech}</span>
-                                                    ))}
-                                                </div>
-                                                <div style={{
-                                                    display: 'flex',
-                                                    alignItems: 'center',
-                                                    gap: '0.5rem',
-                                                    color: '#2563eb'
-                                                }}>
-                                                    🏆 {project.impact}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-
-                        {activeSection === 'featured' && (
-                            <div className="fade-in">
-                                <h2 className="section-title">Featured In</h2>
-                                <div className="projects-grid">
-                                    {[
-                                        {
-                                            title: "AI for Good - DEI AI Leader of the Year Winner",
-                                            organization: "Women in AI Awards North America",
-                                            year: "2023",
-                                            description: "Recognized for outstanding contributions to diversity, equity, and inclusion in artificial intelligence.",
-                                            link: "https://www.womeninai.co/post/honoring-the-excellence-of-women-in-ai-winners-at-wai-awards-north-america-2023",
-                                            icon: "🏆",
-                                            category: "Award"
-                                        },
-                                        {
-                                            title: "Chicago Researchers Measure Representation in Children's Books",
-                                            organization: "Google Cloud Case Study",
-                                            year: "2022",
-                                            description: "Featured research on using Vision AI to analyze diversity in children's book illustrations.",
-                                            link: "https://edu.google.com/resources/customer-stories/university-of-chicago/",
-                                            icon: "📚",
-                                            category: "Case Study"
-                                        },
-                                        {
-                                            title: "SciVis Unveils a Billion Cells, Covid-19 & Invisible Monsters",
-                                            organization: "Intel Developer Podcast - Episode 29",
-                                            year: "2021",
-                                            description: "Featured discussion on scientific visualization and COVID-19 research.",
-                                            link: "https://www.intel.com/content/www/us/en/developer/articles/technical/scivis-a-billion-cells-covid-19-invisible-monsters.html",
-                                            icon: "🎙️",
-                                            category: "Podcast"
-                                        },
-                                        {
-                                            title: "Generative Landscape Discussion Series",
-                                            organization: "Data Science Castnet",
-                                            year: "2023",
-                                            description: "Guest speaker discussing AI and computer vision applications.",
-                                            link: "https://www.youtube.com/watch?v=g-zzeJzXOi8",
-                                            icon: "🎯",
-                                            category: "Talk"
-                                        }
-                                    ].map((feature, index) => (
-                                        <div key={index} className="project-card">
-                                            <div className="project-content">
-                                                <div style={{ display: 'flex', gap: '1rem', alignItems: 'start' }}>
-                                                    <span style={{ fontSize: '2rem' }}>{feature.icon}</span>
-                                                    <div style={{ flex: 1 }}>
-                                                        <div style={{ 
-                                                            display: 'flex', 
-                                                            justifyContent: 'space-between',
-                                                            alignItems: 'start',
-                                                            marginBottom: '0.5rem'
-                                                        }}>
-                                                            <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold' }}>
-                                                                {feature.title}
-                                                            </h3>
-                                                        </div>
-                                                        <p style={{ color: '#4b5563', marginBottom: '0.5rem' }}>
-                                                            {feature.organization}
-                                                        </p>
-                                                        <div style={{ 
-                                                            display: 'flex', 
-                                                            gap: '0.5rem',
-                                                            marginBottom: '1rem'
-                                                        }}>
-                                                            <span className="tech-tag">{feature.category}</span>
-                                                            <span className="tech-tag">{feature.year}</span>
-                                                        </div>
-                                                        <p style={{ color: '#4b5563', marginBottom: '1rem' }}>
-                                                            {feature.description}
-                                                        </p>
-                                                        <a 
-                                                            href={feature.link}
-                                                            target="_blank"
-                                                            rel="noopener noreferrer"
-                                                            style={{ 
-                                                                color: '#2563eb',
-                                                                textDecoration: 'none',
-                                                                display: 'inline-flex',
-                                                                alignItems: 'center',
-                                                                gap: '0.25rem'
-                                                            }}
-                                                        >
-                                                            View Details →
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-
-                        {activeSection === 'publications' && (
-                            <div className="fade-in">
-                                <h2 className="section-title">Publications</h2>
-                                <div className="projects-grid">
-                                    {[
-                                        {
-                                            title: "Measuring Representation of Race, Gender, and Age in Children's Books",
-                                            authors: "Teodora Szasz, Ping-Jung Liu, Emileigh Harrison, Ping-Chang Lin, Hakizumwami Birali Runesha, Anjali Adukia",
-                                            journal: "IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)",
-                                            year: "2022",
-                                            link: "https://openaccess.thecvf.com/content/WACV2022/papers/Szasz_Measuring_Representation_of_Race_Gender_and_Age_in_Childrens_Books_WACV_2022_paper.pdf"
-                                        },
-                                        {
-                                            title: "Echocardiographic Detection of Regional Wall Motion Abnormalities Using AI",
-                                            authors: "Jeremy A. Slivnick, et al.",
-                                            journal: "Journal of the American Society of Echocardiography",
-                                            year: "2024",
-                                            link: "https://doi.org/10.1016/j.echo.2024.03.017"
-                                        },
-                                        {
-                                            title: "Beamforming Through Regularized Inverse Problems in Ultrasound Medical Imaging",
-                                            authors: "Szasz, Teodora, Adrian Basarab, and Denis Kouamé",
-                                            journal: "IEEE Transactions on Ultrasonics, Ferroelectrics, and Frequency Control",
-                                            year: "2016",
-                                            link: "https://doi.org/10.1109/TUFFC.2016.2608939"
-                                        }
-                                    ].map((pub, index) => (
-                                        <div key={index} className="project-card">
-                                            <div className="project-content">
-                                                <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>
-                                                    {pub.title}
-                                                </h3>
-                                                <p style={{ color: '#4b5563', marginBottom: '0.5rem', fontSize: '0.9rem' }}>
-                                                    {pub.authors}
-                                                </p>
-                                                <p style={{ color: '#6b7280', marginBottom: '1rem', fontSize: '0.9rem' }}>
-                                                    {pub.journal} • {pub.year}
-                                                </p>
-                                                <a 
-                                                    href={pub.link}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    style={{ 
-                                                        color: '#2563eb',
-                                                        textDecoration: 'none',
-                                                        display: 'inline-flex',
-                                                        alignItems: 'center',
-                                                        gap: '0.25rem'
-                                                    }}
-                                                >
-                                                    View Publication →
-                                                </a>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-
-                        {activeSection === 'resume' && (
-                            <div className="fade-in">
-                                <h2 className="section-title">Resume</h2>
-                                <div style={{ marginBottom: '3rem' }}>
-                                    <h3 style={{ 
-                                        fontSize: '1.5rem', 
-                                        fontWeight: 'bold', 
-                                        marginBottom: '1.5rem',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        gap: '0.5rem'
-                                    }}>
-                                        💼 Experience
-                                    </h3>
-                                    <div className="projects-grid">
-                                        {[
-                                            {
-                                                title: "Senior Data Scientist",
-                                                company: "Philips LLC",
-                                                location: "Chicago, IL",
-                                                period: "Jan 2023 - present",
-                                                description: "Led AI innovations in FDA-Approved medical imaging devices. Developed ML data-pipeline infrastructure for handling over 1M medical images. Increased diagnostic accuracy by 25% using state-of-the-art ML."
-                                            },
-                                            {
-                                                title: "Senior Computational Scientist",
-                                                company: "University of Chicago",
-                                                location: "Chicago, IL",
-                                                period: "Feb 2021 - 2023",
-                                                description: "Led team of 10 researchers across departments. Managed University Supercomputer operations. Published research in Science Magazine."
-                                            },
-                                            {
-                                                title: "Computational Scientist",
-                                                company: "University of Chicago",
-                                                location: "Chicago, IL",
-                                                period: "2016 - 2021",
-                                                description: "Applied ML and Computer Vision to measure demographic representation in books images. Implemented medical image visualization applications."
-                                            }
-                                        ].map((exp, index) => (
-                                            <div key={index} className="project-card">
-                                                <div className="project-content">
-                                                    <h4 style={{ fontSize: '1.25rem', fontWeight: 'bold' }}>
-                                                        {exp.title}
-                                                    </h4>
-                                                    <p style={{ color: '#4b5563' }}>
-                                                        {exp.company} • {exp.location}
-                                                    </p>
-                                                    <p style={{ 
-                                                        color: '#6b7280', 
-                                                        fontSize: '0.875rem',
-                                                        marginBottom: '1rem'
-                                                    }}>
-                                                        {exp.period}
-                                                    </p>
-                                                    <p style={{ color: '#1f2937' }}>
-                                                        {exp.description}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <h3 style={{ 
-                                        fontSize: '1.5rem', 
-                                        fontWeight: 'bold', 
-                                        marginBottom: '1.5rem',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        gap: '0.5rem'
-                                    }}>
-                                        🎓 Education
-                                    </h3>
-                                    <div className="projects-grid">
-                                        {[
-                                            {
-                                                degree: "PhD in Computer Science",
-                                                institution: "University of Toulouse",
-                                                location: "France",
-                                                year: "2016"
-                                            },
-                                            {
-                                                degree: "MSc in Multimedia Technologies",
-                                                institution: "Technical University of Cluj-Napoca",
-                                                location: "Romania",
-                                                year: "2014"
-                                            },
-                                            {
-                                                degree: "BSc in Electronics, Telecommunications and Information Technology",
-                                                institution: "Technical University of Cluj-Napoca",
-                                                location: "Romania",
-                                                year: "2011"
-                                            }
-                                        ].map((edu, index) => (
-                                            <div key={index} className="project-card">
-                                                <div className="project-content">
-                                                    <h4 style={{ fontSize: '1.25rem', fontWeight: 'bold' }}>
-                                                        {edu.degree}
-                                                    </h4>
-                                                    <p style={{ color: '#4b5563' }}>
-                                                        {edu.institution}
-                                                    </p>
-                                                    <p style={{ color: '#6b7280', fontSize: '0.875rem' }}>
-                                                        {edu.location} • {edu.year}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-
-                        {activeSection === 'contact' && (
-                            <div className="fade-in">
-                                <h2 className="section-title">Contact</h2>
-                                <div className="project-card" style={{ maxWidth: '600px', margin: '0 auto' }}>
-                                    <div className="project-content">
-                                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                                            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                                                <span style={{ fontSize: '1.5rem' }}>📧</span>
-                                                <div>
-                                                    <h3 style={{ fontWeight: 'bold', marginBottom: '0.25rem' }}>
-                                                        Email
-                                                    </h3>
-                                                    <a 
-                                                        href="mailto:dorha.szasz@gmail.com"
-                                                        style={{ color: '#2563eb', textDecoration: 'none' }}
-                                                    >
-                                                        dorha.szasz@gmail.com
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            
-                                            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                                                <span style={{ fontSize: '1.5rem' }}>📱</span>
-                                                <div>
-                                                    <h3 style={{ fontWeight: 'bold', marginBottom: '0.25rem' }}>
-                                                        Phone
-                                                    </h3>
-                                                    <a 
-                                                        href="tel:(312) 975-4067"
-                                                        style={{ color: '#2563eb', textDecoration: 'none' }}
-                                                    >
-                                                        (312) 975-4067
-                                                    </a>
-                                                </div>
-                                            </div>
-
-                                            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                                                <span style={{ fontSize: '1.5rem' }}>💼</span>
-                                                <div>
-                                                    <h3 style={{ fontWeight: 'bold', marginBottom: '0.25rem' }}>
-                                                        LinkedIn
-                                                    </h3>
-
-</head>
-<body>
-    <div id="root"></div>
-
-    <script type="text/babel">
-        function Portfolio() {
-            const [activeSection, setActiveSection] = React.useState('projects');
-
-            const projects = [
-                {
-                    title: "AI-Powered Cardiac Analysis",
-                    description: "Developed state-of-the-art ML framework for detecting abnormalities in cardiac ultrasound images, increasing diagnostic accuracy by 25%",
-                    technologies: ["Machine Learning", "Medical Imaging", "Python"],
-                    impact: "Enhanced early diagnosis capabilities",
-                    year: "2023",
-                    imageUrl: "https://raw.githubusercontent.com/DoraSzasz/DoraSzasz.github.io/master/images/cardiac.jpg"
-                },
-                {
-                    title: "Archaeological Site Detection",
-                    description: "Led analysis of 70M satellite images (20TB) covering Afghanistan's surface, accelerating analysis speed by 400X",
-                    technologies: ["Computer Vision", "Satellite Imaging", "HPC"],
-                    impact: "Featured in Science Magazine",
-                    year: "2022",
-                    imageUrl: "https://raw.githubusercontent.com/DoraSzasz/DoraSzasz.github.io/master/images/archaeological.jpg"
-                },
-                {
-                    title: "Demographic Analysis in Literature",
-                    description: "Built ML system to detect 20 human demographic features across 1M+ book images",
-                    technologies: ["Deep Learning", "VertexAI", "Python"],
-                    impact: "Won Google Cloud Customer Awards",
-                    year: "2022",
-                    imageUrl: "https://raw.githubusercontent.com/DoraSzasz/DoraSzasz.github.io/master/images/demographics.jpg"
-                }
-            ];
-
-            const sections = [
-                { id: 'projects', label: 'Projects' },
-                { id: 'featured', label: 'Featured In' },
-                { id: 'publications', label: 'Publications' },
-                { id: 'resume', label: 'Resume' },
-                { id: 'contact', label: 'Contact' }
             ];
 
             return (
@@ -816,61 +129,25 @@
 
                     <main className="container">
                         {activeSection === 'projects' && (
-                            <div className="fade-in">
+                            <div>
                                 <h2 className="section-title">Featured Projects</h2>
-                                <div className="projects-grid">
+                                <div className="grid">
                                     {projects.map((project, index) => (
-                                        <div key={index} className="project-card">
-                                            <img 
-                                                src={project.imageUrl}
-                                                alt={project.title}
-                                                className="project-image"
-                                                onError={(e) => {
-                                                    e.target.style.display = 'none';
-                                                }}
-                                            />
-                                            <div className="project-content">
-                                                <div style={{ 
-                                                    display: 'flex', 
-                                                    justifyContent: 'space-between',
-                                                    alignItems: 'start',
-                                                    marginBottom: '1rem'
-                                                }}>
-                                                    <h3 style={{ 
-                                                        fontSize: '1.25rem',
-                                                        fontWeight: 'bold',
-                                                        color: '#111827'
-                                                    }}>{project.title}</h3>
-                                                    <span style={{
-                                                        backgroundColor: '#f3f4f6',
-                                                        padding: '0.25rem 0.75rem',
-                                                        borderRadius: '9999px',
-                                                        fontSize: '0.875rem'
-                                                    }}>{project.year}</span>
-                                                </div>
-                                                <p style={{
-                                                    color: '#4b5563',
-                                                    marginBottom: '1rem'
-                                                }}>{project.description}</p>
-                                                <div style={{
-                                                    display: 'flex',
-                                                    flexWrap: 'wrap',
-                                                    gap: '0.5rem',
-                                                    marginBottom: '1rem'
-                                                }}>
+                                        <div key={index} className="card">
+                                            <div className="image-container">
+                                                <img 
+                                                    src={project.imageUrl}
+                                                    alt={project.title}
+                                                    onError={(e) => console.error(`Image failed to load: ${project.imageUrl}`)}
+                                                />
+                                            </div>
+                                            <div className="content">
+                                                <h3>{project.title}</h3>
+                                                <p>{project.description}</p>
+                                                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
                                                     {project.technologies.map((tech, i) => (
-                                                        <span key={i} className="tech-tag">
-                                                            {tech}
-                                                        </span>
+                                                        <span key={i} className="link">{tech}</span>
                                                     ))}
-                                                </div>
-                                                <div style={{
-                                                    display: 'flex',
-                                                    alignItems: 'center',
-                                                    gap: '0.5rem',
-                                                    color: '#2563eb'
-                                                }}>
-                                                    🏆 {project.impact}
                                                 </div>
                                             </div>
                                         </div>
@@ -878,8 +155,16 @@
                                 </div>
                             </div>
                         )}
-                        
-                        {/* Other sections content here */}
+
+                        {activeSection === 'contact' && (
+                            <div>
+                                <h2 className="section-title">Contact</h2>
+                                <div>
+                                    <p><strong>Email:</strong> <a className="link" href="mailto:dorha.szasz@gmail.com">dorha.szasz@gmail.com</a></p>
+                                    <p><strong>LinkedIn:</strong> <a className="link" href="https://www.linkedin.com/in/doraszasz/" target="_blank">Visit Profile</a></p>
+                                </div>
+                            </div>
+                        )}
                     </main>
                 </div>
             );
